@@ -1,5 +1,11 @@
 package spil;
 
+/**
+ * @author Daniel Larsen (s151641)
+ * @author Daniel Anusic (s155005)
+ * @version 1.0
+ */
+
 public class DiceCup {
 
 	private Die die1;
@@ -11,27 +17,24 @@ public class DiceCup {
 	}
 
 	public int shakeOneDie(Player player) {
-		System.out.println("[" + player.getId() + "] " + player.getName() + " is shaking one die");
-		int resultOfRoll = die1.roll();
-		System.out.println("[" + player.getId() + "] " + player.getName() + " got " + resultOfRoll);
-		return resultOfRoll;
+		System.out.println("[" + player.getId() + "] " + player.getName() + " rolling...");
+		int roll = die1.roll();
+		System.out.println("[" + player.getId() + "] " + player.getName() + " got " + roll + "!");
+		return roll;
 	}
 
 	public int shakeTwoDice(Player player) {
-		System.out.println("[" + player.getId() + "] " + player.getName() + " is shaking two dice");
-		int resultOfRoll1 = die1.roll();
-		int resultOfRoll2 = die2.roll();
-		System.out.println("[" + player.getId() + "] " + player.getName() + " got " + resultOfRoll1 + ", " + resultOfRoll2);
-		
-		player.addToScore(resultOfRoll1 + resultOfRoll2);
-		
-		if (resultOfRoll1 == resultOfRoll2) {
-			System.out.println("Wow [" + player.getId() + "] " + player.getName() + " you got an extra turn! roll the dice again!");
-			shakeTwoDice(player);
+		System.out.println("[" + player.getId() + "] " + player.getName() + " rolling...");
+		int roll1 = die1.roll();
+		int roll2 = die2.roll();
+		System.out.println("[" + player.getId() + "] " + player.getName() + " got " + roll1 + ", " + roll2 + "!");
+		player.addToScore(roll1 + roll2);
 
+		if (roll1 == roll2) {
+			System.out.println("Extra roll!");
+			shakeTwoDice(player);
 		}
-		
-		return resultOfRoll1 + resultOfRoll2;
+		return roll1 + roll2;
 	}
 
 }
