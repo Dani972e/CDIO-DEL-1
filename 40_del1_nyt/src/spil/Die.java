@@ -11,7 +11,7 @@ public class Die {
 	/**
 	 * Indkapslede klasse variabler, "fields."
 	 * 
-	 * @param MAX_FACE_VALUE Maximumsværdi for faceValue
+	 * @param MAX_FACE_VALUE Maximumsværdi for faceValue.
 	 * @param faceValue      Den side terningen ligger på efter et kast. [1;6]
 	 */
 	private final int MAX_FACE_VALUE = 6;
@@ -41,16 +41,6 @@ public class Die {
 	 */
 	public int getFaceValue() {
 		return faceValue;
-	}
-
-	/**
-	 * Returnere en String, hvis der bliver kaldt
-	 * System.out.println() på objektet.
-	 * 
-	 * @return String
-	 */
-	public String toString() {
-		return "faceValue: " + getFaceValue();
 	}
 
 }
