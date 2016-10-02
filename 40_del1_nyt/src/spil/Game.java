@@ -4,6 +4,12 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * @author Daniel Larsen (s151641)
+ * @author Daniel Anusic (s155005)
+ * @version 1.0
+ */
+
 public class Game {
 
 	private Player player1;
@@ -15,31 +21,36 @@ public class Game {
 	}
 
 	private void prepareGame() {
-		diceCup = new DiceCup();
 		Scanner input = new Scanner(System.in);
+		diceCup = new DiceCup();
 
 		String answer = "n";
+
 		do {
 			System.out.println("|--------------------------------------------------|");
-			System.out.println("|            Welcome to the Dice game!             |");
+			System.out.println("|             Welcome to the Dice game!            |");
 			System.out.println("| Players, enter your name and prepare for battle! |");
 			System.out.println("|--------------------------------------------------|\n");
 
 			String name1 = createPlayerName(1, input);
 			String name2 = createPlayerName(2, input);
 
-			player1 = new Player(name1, 1);
-			player2 = new Player(name2, 2);
+			player1 = new Player(1, name1);
+			player2 = new Player(2, name2);
 
-			int result1 = 0;
-			int result2 = 0;
+			System.out.println("\n[" + player1.getId() + "] " + player1.getName() + " will now roll once against " + "[" + player2.getId() + "] "
+					+ player2.getName() + " to see who will roll first in the game!\nPress enter after each round to continue!\n");
+
+			int roll1 = 0;
+			int roll2 = 0;
 
 			do {
-				result1 = diceCup.shakeOneDie(player1);
-				result2 = diceCup.shakeOneDie(player2);
-			} while (result1 == result2);
+				roll1 = diceCup.shakeOneDie(player1);
+				System.out.println();
+				roll2 = diceCup.shakeOneDie(player2);
+			} while (roll1 == roll2);
 
-			if (result1 > result2) {
+			if (roll1 > roll2) {
 				System.out.println("\n[" + player1.getId() + "] " + player1.getName() + " will start!\n");
 				playGame(player1, player2, input);
 			} else {
@@ -51,15 +62,14 @@ public class Game {
 				System.out.println("Do you want to play again? [y/n]");
 				answer = input.nextLine().toLowerCase();
 
-				if (answer.equals("n"))
-					break;
+				if (answer.equals("n")) break;
 
 			} while (!(answer.equals("y")));
 
 		} while (answer.equals("y"));
 
 		System.out.println("Thanks for playing!");
-
+		input.close();
 	}
 
 	private void playGame(Player firstPlayer, Player lastPlayer, Scanner input) {
@@ -68,16 +78,13 @@ public class Game {
 			input.nextLine();
 			showScoreTable(firstPlayer, lastPlayer);
 
-			if (firstPlayer.hasWon())
-				break;
+			if (firstPlayer.hasWon()) break;
 
 			diceCup.shakeTwoDice(lastPlayer);
 			input.nextLine();
 			showScoreTable(firstPlayer, lastPlayer);
 
-			if (lastPlayer.hasWon())
-				break;
-
+			if (lastPlayer.hasWon()) break;
 		}
 	}
 
@@ -100,7 +107,7 @@ public class Game {
 	private String createPlayerName(int id, Scanner input) {
 		String name = "";
 		do {
-			System.out.print("[" + id + "] Player, please enter your name: ");
+			System.out.print("[" + id + "] Player name: ");
 			name = input.nextLine();
 		} while (name.length() < 1 || name.contains(" "));
 		return name;
