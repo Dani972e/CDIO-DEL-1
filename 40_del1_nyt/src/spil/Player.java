@@ -1,15 +1,21 @@
 package spil;
 
+/**
+ * @author Daniel Larsen (s151641)
+ * @author Daniel Anusic (s155005)
+ * @version 1.0
+ */
+
 public class Player {
 
 	private final int MAX_SCORE = 40;
+	private int id;
 	private String name;
 	private int score;
-	private int id;
-	
-	public Player(String name, int id) {
-		this.name = name;
+
+	public Player(int id, String name) {
 		this.id = id;
+		this.name = name;
 	}
 
 	public void addToScore(int amount) {
@@ -18,11 +24,15 @@ public class Player {
 
 	public boolean hasWon() {
 		if (score >= MAX_SCORE) {
-			System.out.println("Congratulations " + name + " you have won the game");
+			System.out.println("\n[" + id + "] " + name + " has won! Congratulations!\n");
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public String getName() {
@@ -33,7 +43,4 @@ public class Player {
 		return score;
 	}
 
-	public int getId() {
-		return id;
-	}
 }
