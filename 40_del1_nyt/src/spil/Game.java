@@ -61,7 +61,7 @@ public class Game {
 
 			/* Giver spillerne information om hvad der sker i spillet lige nu */
 			System.out.println("\n[" + player1.getId() + "] " + player1.getName() + " will now roll once against " + "[" + player2.getId() + "] "
-					+ player2.getName() + " to see who will roll first in the game!\nPress enter after each round to continue!\n");
+					+ player2.getName() + " to see who will roll first in the game!\nPress enter after each round to continue!");
 
 			int roll1;
 			int roll2;
@@ -69,7 +69,6 @@ public class Game {
 			/* Finder ud af hvem der skal kaste først i spillet */
 			do {
 				roll1 = diceCup.shakeOneDie(player1);
-				System.out.println();
 				roll2 = diceCup.shakeOneDie(player2);
 			} while (roll1 == roll2);
 
