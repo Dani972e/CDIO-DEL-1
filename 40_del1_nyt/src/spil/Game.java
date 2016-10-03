@@ -110,14 +110,14 @@ public class Game {
 	private void playGame(Player firstPlayer, Player lastPlayer, Scanner input) {
 		while (true) {
 			diceCup.shakeTwoDice(firstPlayer);
-			input.nextLine();
 			showScoreTable(firstPlayer, lastPlayer);
+			input.nextLine();
 
 			if (firstPlayer.hasWon()) break;
 
 			diceCup.shakeTwoDice(lastPlayer);
-			input.nextLine();
 			showScoreTable(firstPlayer, lastPlayer);
+			input.nextLine();
 
 			if (lastPlayer.hasWon()) break;
 		}
@@ -161,7 +161,7 @@ public class Game {
 		do {
 			System.out.print("[" + id + "] Player name: ");
 			name = input.nextLine();
-		} while (name.length() < 1 || name.contains(" "));
+		} while (name.length() < 1 || name.contains(" ") || name.length() > 30);
 		return name;
 	}
 
