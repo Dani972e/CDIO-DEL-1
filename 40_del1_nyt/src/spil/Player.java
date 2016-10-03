@@ -49,7 +49,7 @@ public class Player {
 	 */
 	public boolean hasWon() {
 		if (score >= MAX_SCORE) {
-			System.out.println("\n[" + id + "] " + name + " has won! Congratulations!\n");
+			System.out.println("[" + id + "] " + name + " has won! Congratulations!\n");
 			return true;
 		} else {
 			return false;
