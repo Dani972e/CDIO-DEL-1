@@ -12,44 +12,68 @@ import java.util.Scanner;
 
 public class Game {
 
+	/**
+	 * Indkapslede klasse variabler, "fields."
+	 * 
+	 * @param player1 Spiller 1
+	 * @param player2 Spiller 2
+	 * @param diceCup Raflebæger
+	 */
 	private Player player1;
 	private Player player2;
 	private DiceCup diceCup;
 
+	/**
+	 * Class constructor for game.
+	 * metoden startGame() bliver kaldt.
+	 */
 	public Game() {
-		prepareGame();
+		startGame();
 	}
 
-	private void prepareGame() {
+	/**
+	 * Metode startGame() initialisere spillet. 
+	 */
+	private void startGame() {
+		/* Laver instans af en Scanner og en DiceCup */
 		Scanner input = new Scanner(System.in);
 		diceCup = new DiceCup();
 
 		String answer = "n";
 
 		do {
+			/* Printer introduktion ud */
 			System.out.println("|--------------------------------------------------|");
 			System.out.println("|             Welcome to the Dice game!            |");
 			System.out.println("| Players, enter your name and prepare for battle! |");
 			System.out.println("|--------------------------------------------------|\n");
 
+			/*
+			 * Kalder metoden createPlayerName(id, scanner), 
+			 * til at få 2 navne fra brugeren i konsollen.
+			 */
 			String name1 = createPlayerName(1, input);
 			String name2 = createPlayerName(2, input);
 
+			/* Laver 2 nye spiller objekter med de 2 fundne navne. */
 			player1 = new Player(1, name1);
 			player2 = new Player(2, name2);
 
+			/* Giver spillerne information om hvad der sker i spillet lige nu */
 			System.out.println("\n[" + player1.getId() + "] " + player1.getName() + " will now roll once against " + "[" + player2.getId() + "] "
 					+ player2.getName() + " to see who will roll first in the game!\nPress enter after each round to continue!\n");
 
-			int roll1 = 0;
-			int roll2 = 0;
+			int roll1;
+			int roll2;
 
+			/* Finder ud af hvem der skal kaste først i spillet */
 			do {
 				roll1 = diceCup.shakeOneDie(player1);
 				System.out.println();
 				roll2 = diceCup.shakeOneDie(player2);
 			} while (roll1 == roll2);
 
+			/* Fortæller brugeren hvem der starter og begynder det "rigtige" spil. */
 			if (roll1 > roll2) {
 				System.out.println("\n[" + player1.getId() + "] " + player1.getName() + " will start!\n");
 				playGame(player1, player2, input);
@@ -58,20 +82,31 @@ public class Game {
 				playGame(player2, player1, input);
 			}
 
+			/* Spørger om spillerne vil spille igen */
 			do {
 				System.out.println("Do you want to play again? [y/n]");
 				answer = input.nextLine().toLowerCase();
 
+				/* Hvis input er 'n' eller 'N', så stopper spillet. */
 				if (answer.equals("n")) break;
 
 			} while (!(answer.equals("y")));
 
 		} while (answer.equals("y"));
 
+		/* Siger tak for spillet, hvis spillerne ikke vil spille igen */
 		System.out.println("Thanks for playing!");
 		input.close();
 	}
 
+	/**
+	 * Metoden til det endelige spil, der hvor spillerne skal
+	 * kaste to terninger skiftevis.
+	 * 
+	 * @param firstPlayer Spilleren der starter med at kaste de to terninger
+	 * @param lastPlayer Spilleren der kaster efterfølgende @param firstPlayer
+	 * @param input Scanner objekt til at give pause mellem hvert kast
+	 */
 	private void playGame(Player firstPlayer, Player lastPlayer, Scanner input) {
 		while (true) {
 			diceCup.shakeTwoDice(firstPlayer);
@@ -88,6 +123,13 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Metoden showScoreTable() printer en formateret 
+	 * table ud af begge spilleres score.
+	.	 * 
+	 * @param firstPlayer Første score der bliver vist
+	 * @param lastPlayer Scoren efterfølgende
+	 */
 	private void showScoreTable(Player firstPlayer, Player lastPlayer) {
 		NumberFormat numberFormat = NumberFormat.getInstance(Locale.ENGLISH);
 		numberFormat.setMinimumIntegerDigits(2);
@@ -104,6 +146,16 @@ public class Game {
 		System.out.println("|----------------------------------------|");
 	}
 
+	/**
+	 * Metoden createPlayerName() spørger brugeren 
+	 * efter et navn til en spiller, med id @param id
+	 * og sørger for at der ikke er mellemrum i navnet eller
+	 * længden er mindre end 1.
+	 * 
+	 * @param id spiller id
+	 * @param input Scanner objekt
+	 * @return name
+	 */
 	private String createPlayerName(int id, Scanner input) {
 		String name = "";
 		do {
@@ -113,6 +165,10 @@ public class Game {
 		return name;
 	}
 
+	/** 
+	 * Main metode, der laver et nyt instans af 
+	 * denne klasse Game.
+	 */
 	public static void main(String[] args) {
 		new Game();
 	}
