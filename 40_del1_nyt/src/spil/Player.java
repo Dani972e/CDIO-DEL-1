@@ -11,7 +11,7 @@ public class Player {
 	/**
 	 * Indkapslede klasse variabler, "fields."
 	 *
-	 * @param MAX_SCORE  maksimale score for en spiller
+	 * @param MAX_SCORE maksimale score for en spiller
 	 * @param id spiller id
 	 * @param name spillernavn
 	 * @param score spillerens score
@@ -22,7 +22,7 @@ public class Player {
 	private int score;
 
 	/**
-	 * constructor med to parameter int id og String name.
+	 * Class constructor med to parametre int id og String name.
 	 *
 	 * @param id spiller id
 	 * @param name spillernavn
@@ -33,20 +33,19 @@ public class Player {
 	}
 
 	/**
-	 * metode der ligger amount til score.
+	 * Metoden addToScore() der ligger int amount til score.
 	 *
-	 * @param amount er den der bliver lagt til spiller score.
+	 * @param amount addition til spillerens score
 	 */
 	public void addToScore(int amount) {
 		score += amount;
 	}
 
 	/**
-	 * boolean metode
-	 * hvis score er større end lig med 40, har spilleren vundet.
+	 * Hvis score er større eller lig med 40, har spilleren vundet.
 	 * 
-	 * @return true
-	 * @return false
+	 * @return true hvis score >= MAX_SCORE
+	 * @return false hvis ovenstående ikke er sandt
 	 */
 	public boolean hasWon() {
 		if (score >= MAX_SCORE) {
@@ -58,7 +57,7 @@ public class Player {
 	}
 
 	/**
-	 * gettermetode for id
+	 * Gettermetode for id
 	 * 
 	 * @return id spiller id
 	 */
@@ -67,7 +66,7 @@ public class Player {
 	}
 
 	/**
-	 * gettermetode for name
+	 * Gettermetode for name
 	 * 
 	 * @return name spiller navn
 	 */
@@ -76,7 +75,7 @@ public class Player {
 	}
 
 	/**
-	 * getter metode for score
+	 * Gettermetode for score
 	 * 
 	 * @return score spillerens score
 	 */
