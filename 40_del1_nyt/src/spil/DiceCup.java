@@ -31,7 +31,7 @@ public class DiceCup {
 		player.addToScore(roll1 + roll2);
 
 		if (roll1 == roll2) {
-			System.out.println("Extra roll!");
+			System.out.println("Wow, [" + player.getId() + "] " + player.getName() + " got an extra roll!");
 			shakeTwoDice(player);
 		}
 		return roll1 + roll2;
