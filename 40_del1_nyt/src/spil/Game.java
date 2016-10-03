@@ -75,10 +75,12 @@ public class Game {
 
 			/* Fortæller brugeren hvem der starter og begynder det "rigtige" spil. */
 			if (roll1 > roll2) {
-				System.out.println("\n[" + player1.getId() + "] " + player1.getName() + " will start!\n");
+				System.out.println("\n[" + player1.getId() + "] " + player1.getName() + " will start!");
+				input.nextLine();
 				playGame(player1, player2, input);
 			} else {
-				System.out.println("\n[" + player2.getId() + "] " + player2.getName() + " will start!\n");
+				System.out.println("\n[" + player2.getId() + "] " + player2.getName() + " will start!");
+				input.nextLine();
 				playGame(player2, player1, input);
 			}
 
