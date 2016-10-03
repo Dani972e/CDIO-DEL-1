@@ -8,14 +8,35 @@ package spil;
 
 public class DiceCup {
 
+	/**
+	 * Indkapslede klasse variabler, "fields."
+	 * Et raflebæger (DiceCup) der indeholder
+	 * 2 terninger.
+	 *  
+	 * @param die1 Terning objekt
+	 * @param die2 Terning objekt
+	 */
 	private Die die1;
 	private Die die2;
 
+	/**
+	 * Class constructor, som initialisere
+	 * klasse objekter. 
+	 * 
+	 * @param none
+	 */
 	public DiceCup() {
 		die1 = new Die();
 		die2 = new Die();
 	}
 
+	/**
+	 * Metoden shakeOneDice() bruger @param player til at kaste med én terning.
+	 * Returnere derefter resultatet af kastet som en int.
+	 * 
+	 * @param player Spiller der kaster
+	 * @return roll resultat af kast
+	 */
 	public int shakeOneDie(Player player) {
 		System.out.println("[" + player.getId() + "] " + player.getName() + " rolling...");
 		int roll = die1.roll();
@@ -23,6 +44,13 @@ public class DiceCup {
 		return roll;
 	}
 
+	/**
+	 * Metoden shakeTwoDice() bruger @param player til at kaste med to terninger.
+	 * Returnere derefter resultatet af kastet som en int.
+	 * 
+	 * @param player Spiller der kaster
+	 * @return roll1 + roll2 resultat af kast
+	 */
 	public int shakeTwoDice(Player player) {
 		System.out.println("[" + player.getId() + "] " + player.getName() + " rolling...");
 		int roll1 = die1.roll();
