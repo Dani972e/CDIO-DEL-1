@@ -38,7 +38,7 @@ public class DiceCup {
 	 * @return roll resultat af kast
 	 */
 	public int shakeOneDie(Player player) {
-		System.out.println("[" + player.getId() + "] " + player.getName() + " rolling...");
+		System.out.println("\n[" + player.getId() + "] " + player.getName() + " rolling...");
 		int roll = die1.roll();
 		System.out.println("[" + player.getId() + "] " + player.getName() + " got " + roll + "!");
 		return roll;
