@@ -10,7 +10,10 @@ import java.util.Scanner;
  * @version 1.0
  */
 
-public class Game {
+/* Abstract klasse, så den ikke kan
+ * instantieres.
+ */
+public abstract class GameController {
 
 	/**
 	 * Indkapslede klasse variabler, "fields."
@@ -19,22 +22,14 @@ public class Game {
 	 * @param player2 Spiller 2
 	 * @param diceCup Raflebæger
 	 */
-	private Player player1;
-	private Player player2;
-	private DiceCup diceCup;
-
-	/**
-	 * Class constructor for game.
-	 * metoden startGame() bliver kaldt.
-	 */
-	public Game() {
-		startGame();
-	}
+	private static Player player1;
+	private static Player player2;
+	private static DiceCup diceCup;
 
 	/**
 	 * Metode startGame() initialisere spillet. 
 	 */
-	private void startGame() {
+	private static void startGame() {
 		/* Laver instans af en Scanner og en DiceCup */
 		Scanner input = new Scanner(System.in);
 		diceCup = new DiceCup();
@@ -108,7 +103,7 @@ public class Game {
 	 * @param lastPlayer Spilleren der kaster efterfølgende @param firstPlayer
 	 * @param input Scanner objekt til at give pause mellem hvert kast
 	 */
-	private void playGame(Player firstPlayer, Player lastPlayer, Scanner input) {
+	private static void playGame(Player firstPlayer, Player lastPlayer, Scanner input) {
 		while (true) {
 			diceCup.shakeTwoDice(firstPlayer);
 			showScoreTable(firstPlayer, lastPlayer);
@@ -131,7 +126,7 @@ public class Game {
 	 * @param firstPlayer Første score der bliver vist
 	 * @param lastPlayer Scoren efterfølgende
 	 */
-	private void showScoreTable(Player firstPlayer, Player lastPlayer) {
+	private static void showScoreTable(Player firstPlayer, Player lastPlayer) {
 		NumberFormat numberFormat = NumberFormat.getInstance(Locale.ENGLISH);
 		numberFormat.setMinimumIntegerDigits(2);
 
@@ -153,11 +148,13 @@ public class Game {
 	 * og sørger for at der ikke er mellemrum i navnet eller
 	 * længden er mindre end 1.
 	 * 
+	 * public da metoden skal testes.
+	 * 
 	 * @param id spiller id
 	 * @param input Scanner objekt
 	 * @return name
 	 */
-	private String createPlayerName(int id, Scanner input) {
+	public static String createPlayerName(int id, Scanner input) {
 		String name = "";
 		do {
 			System.out.print("[" + id + "] Player name: ");
@@ -171,7 +168,7 @@ public class Game {
 	 * denne klasse Game.
 	 */
 	public static void main(String[] args) {
-		new Game();
+		startGame();
 	}
 
 }
