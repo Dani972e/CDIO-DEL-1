@@ -27,17 +27,33 @@ public class GameControllerTest {
 	}
 
 	@Test
-	public void testCreatePlayerName() {
-		String testName = "Anders";
-		String expected = "Anders";
+	public void testCreatePlayerName0() {
+		/* TC2 */
+		String testName = "d";
+		String expected = "d";
 
 		System.setIn(new ByteArrayInputStream(testName.getBytes()));
 		scanner = new Scanner(System.in);
 
 		String actual = GameController.createPlayerName(1, scanner);
-		System.out.println("\nTest Output: " + actual);
+		System.out.println("\nActual name: " + actual);
 
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void testCreatePlayerName1() {
+		/* TC3 */
+		String testName = "DanielDanielDanielDanielDaniel";
+		String expected = "DanielDanielDanielDanielDaniel";
 
+		System.setIn(new ByteArrayInputStream(testName.getBytes()));
+		scanner = new Scanner(System.in);
+
+		String actual = GameController.createPlayerName(1, scanner);
+		System.out.println("\nActual name: " + actual);
+
+		assertEquals(expected, actual);
+	}
+	
 }
